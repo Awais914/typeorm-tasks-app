@@ -20,7 +20,7 @@ AppDataSource.initialize()
     app.use(helmet());
     app.use(bodyParser.json());
     app.use("/", routes);
-    app.listen(3000);
+    app.listen(process.env.PORT);
 
     console.log(`Express server has started on port: ${process.env.PORT}`);
   })
