@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import { validate } from "class-validator";
 import { Repository } from "typeorm/repository/Repository";
@@ -6,72 +5,6 @@ import { Repository } from "typeorm/repository/Repository";
 import { AppDataSource } from "../data-source";
 import { Invitation } from "../entity/Invitation";
 import { User } from "../entity/User";
-
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: API operations for managing users
- */
-
-/**
- * @swagger
- * /user:
- *   post:
- *     summary: Create a new user
- *     tags: [Users]
- *     requestBody:
- *       description: User details for creating a new account
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 description: Email of the user
- *               password:
- *                 type: string
- *                 description: Password for the user
- *               inviteToken:
- *                 type: string
- *                 description: Invite Token for signup
- *     responses:
- *       201:
- *         description: User account created successfully
- *         content:
- *           application/json:
- *             example:
- *               message: "Account created"
- *       400:
- *         description: Bad request, validation errors or existing account
- *         content:
- *           application/json:
- *             example:
- *               message: "Validation error"
- *               errors:
- *                 - field: "email"
- *                   message: "Email is required"
- *       409:
- *         description: Conflict, user account already exists
- *         content:
- *           application/json:
- *             example:
- *               message: "Account already exists."
- *       401:
- *         description: Invalid invitation token.
- *         content:
- *           application/json:
- *             example:
- *               message: "Please provide a valid invitation token."
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             example:
- *               message: "Something went wrong!"
- */
 
 class UserController {
   private userRepository: Repository<User>;
@@ -100,7 +33,7 @@ class UserController {
       const existingUser = await this.userRepository.findOneBy({ email });
 
       if (existingUser) {
-        return res.status(400).send({ message: 'Account already exists.' });
+        return res.status(400).send({ message: "Account already exists." });
       }
 
       await this.userRepository.save(user);
@@ -114,6 +47,6 @@ class UserController {
 
     res.status(201).send({ message: "Account created" });
   };
-};
+}
 
 export default UserController;

@@ -1,9 +1,10 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
 import cors = require("cors");
 import helmet from "helmet";
-import * as swaggerJSDoc from 'swagger-jsdoc';
-import * as swaggerUi from 'swagger-ui-express';
+import * as express from "express";
+import * as bodyParser from "body-parser";
+import * as swaggerJSDoc from "swagger-jsdoc";
+import * as swaggerUi from "swagger-ui-express";
+import "dotenv/config";
 
 import { AppDataSource } from "./data-source";
 import routes from "./routes";
@@ -21,6 +22,6 @@ AppDataSource.initialize()
     app.use("/", routes);
     app.listen(3000);
 
-    console.log("Express server has started on port 3000");
+    console.log(`Express server has started on port: ${process.env.PORT}`);
   })
   .catch((error) => console.log(error));

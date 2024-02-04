@@ -22,7 +22,7 @@ export const checkInvite = async (
     where: { token: inviteToken },
   });
 
-  if (invitation && invitation.expiresAt > new Date() && !invitation.user) {
+  if (invitation && invitation.expiresAt > new Date()) {
     req.invitation = invitation;
     next();
   } else {

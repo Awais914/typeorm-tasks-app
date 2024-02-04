@@ -75,11 +75,11 @@ class TaskController {
   };
 
   getUserTasks = async (req: Request, res: Response) => {
-    const {userId, completed, page, pageSize } = req.query;
+    const { userId, completed, page, pageSize } = req.query;
 
     try {
-      const take = pageSize > 0 ? parseInt(pageSize as string, 10) : 1;
-      const skip = page > 0 ? (parseInt(page as string, 10) - 1) * take : 0;      
+      const take = pageSize > 0 ? parseInt(pageSize as string, 10) : 10;
+      const skip = page > 0 ? (parseInt(page as string, 10) - 1) * take : 0;
 
       const tasks = await this.taskRepository.findAndCount({
         where: {
@@ -87,8 +87,8 @@ class TaskController {
           completed: completed ?? undefined,
         },
         take,
-        skip
-      });      
+        skip,
+      });
 
       if (!tasks) {
         return res.status(404).send("Tasks not found");

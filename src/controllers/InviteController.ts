@@ -5,55 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import { AppDataSource } from "../data-source";
 import { Invitation } from "../entity/Invitation";
 
-/**
- * @swagger
- * components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
- *   security:
- *     - bearerAuth: []
- * tags:
- *   name: Invitations
- *   description: API operations for managing invitations
- */
-
-/**
- * @swagger
- * /user/sendInvite:
- *   post:
- *     summary: Send invitation to a user
- *     tags: [Invitations]
- *     security:
- *       - bearerAuth: []  # Indicates that a Bearer token is required
- *     requestBody:
- *       description: Email of the invitee
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 description: Email of the invitee
- *     responses:
- *       200:
- *         description: Invitation sent successfully
- *         content:
- *           application/json:
- *             example:
- *               invitationToken: "generated_invite_token"
- *       400:
- *         description: Bad request, email is missing
- *       401:
- *         description: Unauthorized, invalid token
- *       500:
- *         description: Internal Server Error
- */
-
 class InviteController {
   private invitationRepository: Repository<Invitation>;
 

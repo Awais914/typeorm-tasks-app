@@ -4,15 +4,16 @@ const swaggerOptions = {
     info: {
       title: "Express Tasks App",
       version: "1.0.0",
-      description: "Taska CRUD API made with TypeORM, Express and documented with Swagger",
+      description:
+        "Taska CRUD API made with TypeORM, Express and documented with Swagger",
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: `http://localhost:${process.env.PORT}`,
       },
     ],
   },
-  apis: ["./src/controllers/*.ts"],
+  apis: ["./src/routes/*.ts"],
 };
 
 export default swaggerOptions;

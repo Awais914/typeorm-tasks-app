@@ -27,7 +27,7 @@ export class User {
 
   @Column()
   @Length(4, 20)
-  @IsEmail({}, { message: 'Invalid email format' })
+  @IsEmail({}, { message: "Invalid email format" })
   email: string;
 
   @Column()
